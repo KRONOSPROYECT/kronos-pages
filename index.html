@@ -1,54 +1,230 @@
-<!doctype html>
-<html lang="es-MX">
+<!DOCTYPE html>
+<html lang="es">
 <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
- <meta name="theme-color" content="#0b1220">
- <meta name="description" content="Kronos Pages: bitácora offline con sellado criptográfico y sincronización diferida.">
- <link rel="manifest" href="manifest.json">
- <link rel="stylesheet" href="css/style.css">
- <title>Kronos Pages · Bitácora sellada</title>
- <style>
- :root { color-scheme: dark; --bg:#0b1220; --panel:#111b2e; --line:#263653; --text:#e7edf7; --muted:#9aa9c2; --accent:#2dd4bf; --danger:#fb7185; }
- * { box-sizing:border-box; } body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
- button,input,textarea { font:inherit; } .app { width:min(1100px,100%); margin:auto; padding:20px; }
- header { display:flex; gap:16px; justify-content:space-between; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--line); }
- h1,h2,p { margin:0; } h1 { font-size:clamp(1.5rem,4vw,2.2rem); letter-spacing:-.03em; } h2 { font-size:1rem; margin-bottom:12px; }
- .eyebrow { color:var(--accent); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; } .muted { color:var(--muted); } .small { font-size:.82rem; }
- .status { display:inline-flex; align-items:center; gap:7px; padding:8px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); white-space:nowrap; } .dot { width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px var(--accent); }
- main { display:grid; grid-template-columns:1.2fr .8fr; gap:16px; padding-top:16px; } .panel { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 12px 30px #0003; }
- label { display:block; color:var(--muted); font-size:.82rem; margin:12px 0 6px; } input,textarea { width:100%; border:1px solid var(--line); border-radius:10px; background:#0c1527; color:var(--text); padding:11px 12px; outline:none; }
- input:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px #2dd4bf22; } textarea { min-height:180px; resize:vertical; }
- .actions { display:flex; flex-wrap:wrap; gap:9px; margin-top:14px; } button { cursor:pointer; border:1px solid var(--line); border-radius:10px; padding:10px 13px; color:var(--text); background:#17243b; } button.primary { background:var(--accent); border-color:var(--accent); color:#06251f; font-weight:700; } button:disabled { opacity:.5; cursor:not-allowed; }
- .meta { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; } .stat { border:1px solid var(--line); border-radius:12px; padding:12px; } .stat b { display:block; font-size:1.2rem; margin-top:3px; }
- .record { padding:12px 0; border-bottom:1px solid var(--line); } .record:last-child { border-bottom:0; } .record-head { display:flex; gap:8px; justify-content:space-between; align-items:center; }
- code,.hash { font:11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; color:#a7f3d0; overflow-wrap:anywhere; } .empty { color:var(--muted); text-align:center; padding:28px 8px; }
- .notice { border-left:3px solid var(--accent); padding:10px 12px; background:#0c1728; border-radius:0 10px 10px 0; margin-top:14px; } footer { padding:20px 0 8px; color:var(--muted); font-size:.78rem; text-align:center; }
- @media (max-width:760px) { .app { padding:14px; } header { flex-direction:column; } main { grid-template-columns:1fr; } .meta { grid-template-columns:1fr 1fr; } }
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ===== TÍTULO CON KEYWORDS ===== -->
+    <title>AntiFake System - Trazabilidad con Auditoría IA | ISO 12931</title>
+    
+    <!-- ===== META DESCRIPTION PARA SEO ===== -->
+    <meta name="description" content="Sistema antifalsificación con trazabilidad inmutable y auditoría IA - Cumple ISO 12931, ISO 22382, NOM-024">
+    <meta name="keywords" content="antifalsificación, trazabilidad, auditoría IA, folios, logística, blockchain, peritaje">
+    <meta name="author" content="AntiFake System">
+    
+    <!-- ===== PWA / OFFLINE ===== -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- ===== OPEN GRAPH PARA REDES ===== -->
+    <meta property="og:title" content="AntiFake System - Peritaje Activo™">
+    <meta property="og:description" content="Cada producto con voz propia. Auditoría automática con IA y trazabilidad inmutable.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tusuario.github.io/anti-fake-system/">
+    <meta property="og:image" content="https://tusuario.github.io/anti-fake-system/assets/img/og-image.jpg">
+    
+    <!-- ===== ISO / NOM / CUMPLIMIENTO ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "AntiFake System",
+        "description": "Sistema antifalsificación con trazabilidad inmutable y auditoría IA",
+        "auditFolio": "KRONOS-MD-33-467162326",
+        "compliance": ["ISO 12931", "ISO 22382", "NOM-024-SCFI"],
+        "offlineCapable": true,
+        "version": "1.0.0"
+    }
+    </script>
+    
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- ===== ICONO (emoji como fallback) ===== -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
 </head>
 <body>
- <div class="app">
- <header><div><div class="eyebrow">Kronos Pages · MD-33</div><h1>Bitácora digital sellada</h1><p class="muted">Captura evidencia y notas aun sin conexión. Cada registro queda encadenado.</p></div><div class="status" aria-live="polite"><span class="dot" id="statusDot"></span><span id="statusText">Inicializando…</span></div></header>
- <main>
- <section class="panel" aria-labelledby="captureTitle"><h2 id="captureTitle">Nuevo registro</h2><form id="entryForm"><label for="title">Título</label><input id="title" name="title" maxlength="120" required placeholder="Ej. Entrega de documento"><label for="body">Descripción o declaración</label><textarea id="body" name="body" maxlength="10000" required placeholder="Escribe lo ocurrido, quién participó y qué debe preservarse…"></textarea><label for="evidence">Evidencia opcional</label><input id="evidence" name="evidence" type="file" accept="image/*,.pdf,application/pdf"><div class="actions"><button class="primary" type="submit">Sellar registro</button><button type="button" id="installBtn" hidden>Instalar app</button><button type="button" id="exportBtn">Exportar auditoría</button></div></form><div class="notice small"><b>Folio génesis:</b> <code>KRONOS-MD-33-467162326</code><br>El sellado usa SHA-256 encadenado. La firma PQC se delega a <code>js/quantum-seal.js</code> cuando está disponible.</div></section>
- <aside class="panel" aria-labelledby="auditTitle"><h2 id="auditTitle">Estado de auditoría</h2><div class="meta"><div class="stat"><span class="muted small">Registros locales</span><b id="count">0</b></div><div class="stat"><span class="muted small">Pendientes de sync</span><b id="pending">0</b></div></div><label for="search">Buscar en la bitácora</label><input id="search" type="search" placeholder="Título o texto…"><div id="records" aria-live="polite"><div class="empty">Todavía no hay registros.</div></div></aside>
- </main><footer>Funciona offline · Los datos se guardan en este dispositivo · <span id="connection">Sin comprobar</span></footer>
- </div>
- <script type="module">
-const FOLIO='KRONOS-MD-33-467162326', DB_NAME='kronos-pages', STORE='entries'; let db, entries=[], deferredInstall; const $=id=>document.getElementById(id);
- const setStatus=(text,online=navigator.onLine)=>{ $('statusText').textContent=text; $('connection').textContent=online?'Conectado':'Sin conexión'; $('statusDot').style.background=online?'var(--accent)':'var(--danger)'; $('statusDot').style.boxShadow=online?'0 0 12px var(--accent)':'0 0 12px var(--danger)'; };
- async function sha256(value){const bytes=new TextEncoder().encode(value),digest=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');}
- function openDb(){return new Promise((resolve,reject)=>{const request=indexedDB.open(DB_NAME,1);request.onupgradeneeded=()=>{const store=request.result.createObjectStore(STORE,{keyPath:'id'});store.createIndex('createdAt','createdAt');};request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);});}
- function readAll(){return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readonly'),req=tx.objectStore(STORE).getAll();req.onsuccess=()=>resolve(req.result.sort((a,b)=>b.createdAt-a.createdAt));req.onerror=()=>reject(req.error);});}
- function save(entry){return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(entry);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
- function download(name,text,type='application/json'){const blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url);}
- function escapeHtml(text){return String(text).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;',""':'&quot;'}[c]));}
- function render(){const query=$('search').value.trim().toLowerCase(),visible=entries.filter(e=>!query||`${e.title} ${e.body}`.toLowerCase().includes(query));$('count').textContent=entries.length;$('pending').textContent=entries.filter(e=>!e.synced).length;$('records').innerHTML=visible.length?visible.map(e=>`<article class="record"><div class="record-head"><b>${escapeHtml(e.title)}</b><span class="muted small">${new Date(e.createdAt).toLocaleString('es-MX')}</span></div><p class="muted small">${escapeHtml(e.body).slice(0,240)}${e.body.length>240?'…':''}</p><div class="hash">SHA-256: ${e.hash}</div><div class="muted small">${e.synced?'Sincronizado':'En cola offline'}${e.evidenceName?' · Evidencia: '+escapeHtml(e.evidenceName):''}</div></article>`).join(''):'<div class="empty">No hay coincidencias.</div>'; }
- $('entryForm').addEventListener('submit',async event=>{event.preventDefault();const form=new FormData(event.currentTarget),previous=entries[0]?.hash||FOLIO,createdAt=Date.now(),file=$('evidence').files[0],payload=JSON.stringify({folio:FOLIO,title:form.get('title'),body:form.get('body'),previous,createdAt,evidenceName:file?.name||null}),entry={id:crypto.randomUUID(),folio:FOLIO,title:form.get('title').trim(),body:form.get('body').trim(),createdAt,previous,hash:await sha256(payload),evidenceName:file?.name||null,synced:false};await save(entry);entries=await readAll();render();event.currentTarget.reset();setStatus('Registro sellado');if(window.KronosSync?.enqueue)window.KronosSync.enqueue(entry);});
- $('search').addEventListener('input',render);$('exportBtn').addEventListener('click',()=>download('kronos-audit-log.json',JSON.stringify({folio:FOLIO,exportedAt:new Date().toISOString(),entries},null,2)));window.addEventListener('online',()=>setStatus('Conectado',true));window.addEventListener('offline',()=>setStatus('Modo offline',false));
- window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('installBtn').hidden=false;});$('installBtn').addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();deferredInstall=null;$('installBtn').hidden=true;});
- (async()=>{try{db=await openDb();entries=await readAll();render();setStatus(navigator.onLine?'Listo':'Modo offline');}catch(error){console.error(error);setStatus('Almacenamiento no disponible',false);}if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(console.warn);try{await import('./js/vault.js');await import('./js/quantum-seal.js');await import('./js/sync.js');}catch(_){/* El modo autónomo sigue funcionando. */}})();
- </script>
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🔒 AntiFake</h1>
+                <span class="badge">Peritaje Activo™</span>
+            </div>
+            <nav>
+                <a href="#demo">Demo</a>
+                <a href="#planes">Planes</a>
+                <a href="dashboard.html" class="btn-outline">Mi Empresa</a>
+                <a href="verify.html" class="btn-outline">Verificar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- HERO -->
+    <!-- ============================================================ -->
+    <section class="hero">
+        <div class="container">
+            <h2>Cada producto con <span class="highlight">voz propia</span></h2>
+            <p>Auditoría automática con IA. Trazabilidad inmutable. Pago por folio.</p>
+            <div class="hero-actions">
+                <a href="#demo" class="btn-primary">Probar Demo</a>
+                <a href="#planes" class="btn-secondary">Ver Planes</a>
+            </div>
+            
+            <!-- ===== SELLO DE CUMPLIMIENTO ===== -->
+            <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 0.75rem; color: #64748b;">
+                <span>✅ ISO 12931</span>
+                <span>✅ ISO 22382</span>
+                <span>✅ NOM-024</span>
+                <span>🔒 KRONOS-MD-33</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DEMO: AUDITAR UN FOLIO -->
+    <!-- ============================================================ -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h3>🔍 Audita un folio ahora</h3>
+            <p>Ingresa el código de un producto y mira su trazabilidad completa</p>
+            
+            <div class="search-box">
+                <!-- FIX: Placeholder sin exponer formato real -->
+                <input type="text" id="folioInput" placeholder="Ej: AF-2026-XXXX-001" />
+                <!-- FIX: Sin onclick, se maneja con event listener -->
+                <button id="btn-auditar" class="btn-primary">Auditar</button>
+            </div>
+
+            <div id="resultado-auditoria" class="resultado-card hidden">
+                <!-- Aquí se renderiza el resultado de la auditoría -->
+            </div>
+
+            <!-- FIX: Sin onclick, se maneja con event listener -->
+            <button id="btn-demo" class="btn-secondary small">
+                📦 Cargar 10 folios de ejemplo
+            </button>
+            
+            <!-- ===== INDICADOR DE OFFLINE ===== -->
+            <div id="offline-indicator" style="margin-top: 12px; font-size: 0.8rem; color: #94a3b8; display: none;">
+                📡 Modo offline - Los datos se guardarán localmente
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- PLANES DE PRECIO -->
+    <!-- ============================================================ -->
+    <section id="planes" class="planes">
+        <div class="container">
+            <h3>📊 Paga solo por lo que usas</h3>
+            <p style="text-align: center; color: #64748b; margin-bottom: 40px;">
+                Sin compromisos. Escala según tu volumen de productos.
+            </p>
+            
+            <div class="plan-grid">
+                <!-- PLAN BÁSICO -->
+                <div class="plan-card">
+                    <h4>Básico</h4>
+                    <p class="precio">$0.50 <span>/folio</span></p>
+                    <ul>
+                        <li>✅ Trazabilidad básica</li>
+                        <li>✅ Registro de 3 puntos</li>
+                        <li>✅ Escaneo QR</li>
+                        <li>❌ Auditoría IA</li>
+                        <li>❌ Informe pericial</li>
+                    </ul>
+                    <button class="btn-outline" onclick="alert('🚀 Próximamente')">Contratar</button>
+                </div>
+
+                <!-- PLAN PRO (DESTACADO) -->
+                <div class="plan-card destacado">
+                    <span class="etiqueta">Más popular</span>
+                    <h4>Pro</h4>
+                    <p class="precio">$2.00 <span>/folio</span></p>
+                    <ul>
+                        <li>✅ Trazabilidad avanzada</li>
+                        <li>✅ Escaneos ilimitados</li>
+                        <li>✅ Auditoría IA automática</li>
+                        <li>✅ Informe pericial</li>
+                        <li>✅ Sello KRONOS-MD-33</li>
+                        <li>✅ Offline mode</li>
+                    </ul>
+                    <button class="btn-primary" onclick="alert('🚀 Próximamente')">Contratar</button>
+                </div>
+
+                <!-- PLAN ENTERPRISE -->
+                <div class="plan-card">
+                    <h4>Enterprise</h4>
+                    <p class="precio">$5.00 <span>/folio</span></p>
+                    <ul>
+                        <li>✅ Todo lo Pro</li>
+                        <li>✅ Peritaje humano</li>
+                        <li>✅ API integración</li>
+                        <li>✅ Auditoría en tiempo real</li>
+                        <li>✅ Dashboard personalizado</li>
+                        <li>✅ Soporte 24/7</li>
+                    </ul>
+                    <button class="btn-outline" onclick="alert('📞 Contacta a ventas')">Contactar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer>
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                <p>© 2026 AntiFake System - Tecnología de Peritaje Activo™</p>
+                <div style="display: flex; gap: 16px; font-size: 0.8rem;">
+                    <a href="#" style="color: #94a3b8; text-decoration: none;">Privacidad</a>
+                    <a href="#" style="color: #94a3b8; text-decoration: none;">Términos</a>
+                    <a href="#" style="color: #94a3b8; text-decoration: none;">ISO 12931</a>
+                    <span style="color: #475569;">v1.0.0</span>
+                </div>
+            </div>
+            <div style="margin-top: 12px; font-size: 0.7rem; color: #475569;">
+                🔒 Sellado con KRONOS-MD-33-467162326 · Cumple NOM-024-SCFI
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SERVICE WORKER PARA OFFLINE -->
+    <!-- ============================================================ -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/anti-fake-system/sw.js')
+                .then(() => console.log('✅ AntiFake: Service Worker registrado'))
+                .catch(() => console.log('⚠️ AntiFake: SW no disponible'));
+        }
+
+        // Detectar estado offline/online
+        window.addEventListener('online', () => {
+            const indicator = document.getElementById('offline-indicator');
+            if (indicator) indicator.style.display = 'none';
+        });
+        window.addEventListener('offline', () => {
+            const indicator = document.getElementById('offline-indicator');
+            if (indicator) indicator.style.display = 'block';
+        });
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS PRINCIPALES (orden correcto) -->
+    <!-- ============================================================ -->
+    <script src="js/quantum-seal.js"></script>
+    <script src="js/offline-vault.js"></script>
+    <script src="js/forensic.js"></script>
+    <script src="js/folio-generator.js"></script>
+    <script src="js/trazabilidad.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
