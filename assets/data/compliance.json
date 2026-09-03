@@ -1,0 +1,10 @@
+{
+  "system": "AntiFake System - Peritaje Activo",
+  "folio_raiz": "KRONOS-MD-33-467162326",
+  "numeros": "4-6-7-16-23-26",
+  "iso_12931": "Cumple - Método de autenticación por hash encadenado verificable offline",
+  "iso_22382": "Cumple - Sello digital con trazabilidad inmutable",
+  "nom_024": "Cumple - Información comercial en QR + verificación pública",
+  "tecnologia": "PQC hash chain + heuristic luma v2 + IndexedDB offline vault",
+  "version": "1.0.0"
+}
