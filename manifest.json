@@ -1,0 +1,19 @@
+{
+ "name": "Kronos Pages",
+ "short_name": "Kronos",
+ "description": "Bitácora digital offline con sellado criptográfico y sincronización diferida.",
+ "lang": "es-MX",
+ "dir": "ltr",
+ "id": "./index.html",
+ "start_url": "./index.html",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "theme_color": "#0b1220",
+ "background_color": "#0b1220",
+ "categories": [
+ "productivity",
+ "business",
+ "utilities"
+ ],
+ "p
