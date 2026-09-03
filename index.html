@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="theme-color" content="#0b1220">
+ <meta name="description" content="Kronos Pages: bitácora offline con sellado criptográfico y sincronización diferida.">
+ <link rel="manifest" href="manifest.json">
+ <link rel="stylesheet" href="css/style.css">
+ <title>Kronos Pages · Bitácora sellada</title>
+ <style>
+ :root { color-scheme: dark; --bg:#0b1220; --panel:#111b2e; --line:#263653; --text:#e7edf7; --muted:#9aa9c2; --accent:#2dd4bf; --danger:#fb7185; }
+ * { box-sizing:border-box; } body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+ button,input,textarea { font:inherit; } .app { width:min(1100px,100%); margin:auto; padding:20px; }
+ header { display:flex; gap:16px; justify-content:space-between; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--line); }
+ h1,h2,p { margin:0; } h1 { font-size:clamp(1.5rem,4vw,2.2rem); letter-spacing:-.03em; } h2 { font-size:1rem; margin-bottom:12px; }
+ .eyebrow { color:var(--accent); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; } .muted { color:var(--muted); } .small { font-size:.82rem; }
+ .status { display:inline-flex; align-items:center; gap:7px; padding:8px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); white-space:nowrap; } .dot { width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px var(--accent); }
+ main { display:grid; grid-template-columns:1.2fr .8fr; gap:16px; padding-top:16px; } .panel { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 12px 30px #0003; }
+ label { display:block; color:var(--muted); font-size:.82rem; margin:12px 0 6px; } input,textarea { width:100%; border:1px solid var(--line); border-radius:10px; background:#0c1527; color:var(--text); padding:11px 12px; outline:none; }
+ input:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px #2dd4bf22; } textarea { min-height:180px; resize:vertical; }
+ .actions { display:flex; flex-wrap:wrap; gap:9px; margin-top:14px; } button { cursor:pointer; border:1px solid var(--line); border-radius:10px; padding:10px 13px; color:var(--text); background:#17243b; } button.primary { background:var(--accent); border-color:var(--accent); color:#06251f; font-weight:700; } button:disabled { opacity:.5; cursor:not-allowed; }
+ .meta { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; } .stat { border:1px solid var(--line); border-radius:12px; padding:12px; } .stat b { display:block; font-size:1.2rem; margin-top:3px; }
+ .record { padding:12px 0; border-bottom:1px solid var(--line); } .record:last-child { border-bottom:0; } .record-head { display:flex; gap:8px; justify-content:space-between; align-items:center; }
+ code,.hash { font:11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; color:#a7f3d0; overflow-wrap:anywhere; } .empty { color:var(--muted); text-align:center; padding:28px 8px; }
+ .notice { border-left:3px solid var(--accent); padding:10px 12px; background:#0c1728; border-radius:0 10px 10px 0; margin-top:14px; } footer { padding:20px 0 8px; color:var(--muted); font-size:.78rem; text-align:center; }
+ @media (max-width:760px) { .app { padding:14px; } header { flex-direction:column; } main { grid-template-columns:1fr; } .meta { grid-template-columns:1fr 1fr; } }
+ </style>
+</head>
+<body>
+ <div class="app">
+ <header><div><div class="eyebrow">Kronos Pages · MD-33</div><h1>Bitácora digital sellada</h1><p class="muted">Captura evidencia y notas aun sin conexión. Cada registro queda encadenado.</p></div><div class="status" aria-live="polite"><span class="dot" id="statusDot"></span><span id="statusText">Inicializando…</span></div></header>
+ <main>
+ <section class="panel" aria-labelledby="captureTitle"><h2 id="captureTitle">Nuevo registro</h2><form id="entryForm"><label for="title">Título</label><input id="title" name="title" maxlength="120" required placeholder="Ej. Entrega de documento"><label for="body">Descripción o declaración</label><textarea id="body" name="body" maxlength="10000" required placeholder="Escribe lo ocurrido, quién participó y qué debe preservarse…"></textarea><label for="evidence">Evidencia opcional</label><input id="evidence" name="evidence" type="file" accept="image/*,.pdf,application/pdf"><div class="actions"><button class="primary" type="submit">Sellar registro</button><button type="button" id="installBtn" hidden>Instalar app</button><button type="button" id="exportBtn">Exportar auditoría</button></div></form><div class="notice small"><b>Folio génesis:</b> <code>KRONOS-MD-33-467162326</code><br>El sellado usa SHA-256 encadenado. La firma PQC se delega a <code>js/quantum-seal.js</code> cuando está disponible.</div></section>
+ <aside class="panel" aria-labelledby="auditTitle"><h2 id="auditTitle">Estado de auditoría</h2><div class="meta"><div class="stat"><span class="muted small">Registros locales</span><b id="count">0</b></div><div class="stat"><span class="muted small">Pendientes de sync</span><b id="pending">0</b></div></div><label for="search">Buscar en la bitácora</label><input id="search" type="search" placeholder="Título o texto…"><div id="records" aria-live="polite"><div class="empty">Todavía no hay registros.</div></div></aside>
+ </main><footer>Funciona offline · Los datos se guardan en este dispositivo · <span id="connection">Sin comprobar</span></footer>
+ </div>
+ <script type="module">
