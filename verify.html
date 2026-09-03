@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificar Producto - AntiFake</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header"><div class="container"><div class="logo"><h1>🔒 AntiFake</h1><span class="badge">Verificación</span></div></div></header>
+<section class="demo-section">
+<div class="container">
+<h3>Verificación pública - KRONOS-MD-33</h3>
+<input type="file" id="fotoInput" accept="image/*" capture="environment">
+<button id="btn-verificar-foto" class="btn-primary">Verificar Foto + Folio</button>
+<div id="resultado-verify" class="resultado-card"></div>
+<div style="margin-top:16px;font-size:.7rem;color:#475569">Sellado con KRONOS-MD-33-467162326 · Hash encadenado PQC</div>
+</div>
+</section>
+<script src="js/quantum-seal.js"></script>
+<script src="js/forensic.js"></script>
+<script src="js/offline-vault.js"></script>
+<script src="js/main.js"></script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}</script>
+</body>
+</html>
